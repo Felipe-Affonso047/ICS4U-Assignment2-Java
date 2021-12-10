@@ -33,12 +33,32 @@ final class BlowUp {
     * @return reversed array
     */
     public static String blowUp(final String stringArray) {
-        final String returnValue;
-        if (stringArray.length() == 0) {
-            returnValue = stringArray;
+        String returnValue = "";
+        final char firstLetter = stringArray.charAt(0);
+        final int stringLen = stringArray.length();
+        if (stringLen == 1) {
+            if (!Character.isDigit(firstLetter)) {
+                returnValue = Character.toString(firstLetter);
+            }
+        } else if (stringLen > 1) {
+            if (Character.isDigit(firstLetter)) {
+                final int firtCharNum = Character.getNumericValue(firstLetter);
+                if (Character.isDigit(stringArray.charAt(1))) {
+                    for (int counter = 0; counter < firtCharNum; counter++) {
+                        returnValue = returnValue + stringArray.charAt(1);
+                    }
+                } else {
+                    for (int counter = 1; counter < firtCharNum; counter++) {
+                        returnValue = returnValue + stringArray.charAt(1);
+                    }
+                }
+                returnValue = returnValue + blowUp(stringArray.substring(1));
+            } else {
+                returnValue = firstLetter
+                    + blowUp(stringArray.substring(1));
+            }
         } else {
-            returnValue = reverseString(stringArray.substring(1))
-                + stringArray.charAt(0);
+            returnValue = Character.toString(firstLetter);
         }
         return returnValue;
     }
@@ -50,11 +70,11 @@ final class BlowUp {
     */
     public static void main(final String[] args) {
         final Scanner scanner = new Scanner(System.in);
-        System.out.println("Input a text to reverse: ");
+        System.out.println("Input a string:");
         final String input = scanner.nextLine();
 
-        final String reversedString = reverseString(input);
-        System.out.println("The reverse of " + input + " is " + reversedString);
+        final String blownAway = blowUp(input);
+        System.out.println("\nYour string was BLOWN UP!\n" + blownAway);
 
         System.out.println("\nDone.");
     }
