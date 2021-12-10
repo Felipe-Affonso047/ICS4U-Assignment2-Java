@@ -1,5 +1,5 @@
 /*
-* The "Reverse" program reverse a string.
+* The "BlowUp" program Blows Up a string.
 *
 * @author  Felipe Garcia Affonso
 * @version 1.0
@@ -9,9 +9,9 @@
 import java.util.Scanner;
 
 /**
-* This is the calculating heating time program.
+* A class.
 */
-final class Reverse {
+final class BlowUp {
     /**
     * Prevent instantiation.
     * Throw an exception IllegalStateException.
@@ -21,18 +21,18 @@ final class Reverse {
     *
     *
     */
-    private Reverse() {
+    private BlowUp() {
         throw new IllegalStateException("Cannot be instantiated");
     }
 
     /**
-    * The starting boardCalculator() function.
+    * The starting blowUp() function.
     *
     * @param stringArray is any string
     *
     * @return reversed array
     */
-    public static String reverseString(final String stringArray) {
+    public static String blowUp(final String stringArray) {
         final String returnValue;
         if (stringArray.length() == 0) {
             returnValue = stringArray;
